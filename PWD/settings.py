@@ -9,7 +9,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')  # Use an
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Convert the string value to boolean
 
 # Allowed hosts for production
-ALLOWED_HOSTS = ['your-production-url.azurewebsites.net', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['safestep-frfda9eqdkg2cnh7.centralindia-01.azurewebsites.net', '127.0.0.1', 'localhost']
 
 # Azure Computer Vision settings
 AZURE_COMPUTER_VISION_ENDPOINT = os.environ.get('AZURE_COMPUTER_VISION_ENDPOINT', 'https://default-endpoint.com/')
