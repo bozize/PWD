@@ -9,7 +9,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')  # Use an
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Convert the string value to boolean
 
 # Allowed hosts for production
-ALLOWED_HOSTS = ['safestep-frfda9eqdkg2cnh7.centralindia-01.azurewebsites.net', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['safestep-frfda9eqdkg2cnh7.centralindia-01.azurewebsites.net']
 
 # Azure Computer Vision settings
 AZURE_COMPUTER_VISION_ENDPOINT = os.environ.get('AZURE_COMPUTER_VISION_ENDPOINT', 'https://default-endpoint.com/')
@@ -44,23 +44,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'PWD.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'pwdapp', 'templates'),
-        ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 WSGI_APPLICATION = 'PWD.wsgi.application'
 
@@ -102,10 +85,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'pwdapp', 'static'),  # Include your static files directory
-]
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
