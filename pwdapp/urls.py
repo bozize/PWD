@@ -5,7 +5,6 @@ from .views import upload_violation
 
 
 urlpatterns = [
-    path('verify/', views.verify_pwd, name='verify_pwd'),
     path('process-violation/', views.process_violation, name='process_violation'),
     path('pwd/<str:id_number>/', views.get_pwd_by_id, name='get_pwd_by_id'),
     path('upload-violation/', upload_violation, name='upload-violation'),
