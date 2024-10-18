@@ -21,23 +21,7 @@ from django.core.files.base import ContentFile
 
 
 
-@api_view(['POST'])
-def verify_pwd(request):
-    mac_address = request.data.get('mac_address')
-    id_number = request.data.get('id_number')
 
-    # Check if the MAC address and ID number are provided
-    if not mac_address or not id_number:
-        return Response({"status": "mac address or id number missing"}, status=status.HTTP_400_BAD_REQUEST)
-
-    # Check if PWD exists in the database
-    pwd = PWD.objects.filter(mac_address=mac_address, id_number=id_number).first()
-
-    if pwd:
-        serializer = PWDSerializer(pwd)  # Serialize the PWD instance
-        return Response({"status": "verified", "pwd_info": serializer.data}, status=status.HTTP_200_OK)
-    else:
-        return Response({"status": "not verified"}, status=status.HTTP_404_NOT_FOUND)
 
 
 
@@ -59,15 +43,15 @@ def process_violation(request):
     
 
 @api_view(['GET'])
-def get_pwd_by_id(request, id_number):
-    # Check if a PWD with the provided id_number exists
-    exists = PWD.objects.filter(id_number=id_number).exists()
+def get_pwd_by_mac(request, mac_address):
+    # Check if a PWD with the provided mac_address exists
+    exists = PWD.objects.filter(mac_address=mac_address).exists()
 
     # Return "yes" if exists, otherwise "no"
     if exists:
-        return Response({"yes"}, status=status.HTTP_200_OK)
+        return Response({"message": "yes"}, status=status.HTTP_200_OK)
     else:
-        return Response({"no"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"message": "no"}, status=status.HTTP_404_NOT_FOUND)
 
 
 

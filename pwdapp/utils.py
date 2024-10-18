@@ -6,7 +6,7 @@ from django.conf import settings
 import re
 from .models import RoadUser
 
-# Initialize your Azure Computer Vision client
+
 def get_computervision_client():
     endpoint = settings.AZURE_COMPUTER_VISION_ENDPOINT
     key = settings.AZURE_COMPUTER_VISION_KEY

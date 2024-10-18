@@ -5,7 +5,7 @@ from .forms import PWDForm
 class CustomAdmin(admin.ModelAdmin):
     class Media:
         css = {
-            'all': ('pwdapp/bo.css',)  # Link your custom CSS here
+            'all': ('pwdapp/bo.css',)
         }
 
 @admin.register(RoadUser)

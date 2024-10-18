@@ -1,4 +1,4 @@
-# core/models.py
+
 from django.db import models
 
 
@@ -6,7 +6,7 @@ from django.db import models
 class PWD(models.Model):
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=15)
-    mac_address = models.CharField(max_length=17, unique=True)  # Store as a string
+    mac_address = models.CharField(max_length=17, unique=True)
     id_number = models.CharField(max_length=20, unique=True)
 
     def __str__(self):
