@@ -75,6 +75,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],  # List of directories where templates can be found
+        'APP_DIRS': True,  # Enables template discovery in installed applications
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
+
+
+
 DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800 
 
 # Internationalization
