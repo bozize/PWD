@@ -44,6 +44,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'PWD.urls'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://safestep-frfda9eqdkg2cnh7.centralindia-01.azurewebsites.net',
+]
+
 
 WSGI_APPLICATION = 'PWD.wsgi.application'
 
