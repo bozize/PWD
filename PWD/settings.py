@@ -51,13 +51,13 @@ WSGI_APPLICATION = 'PWD.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'safe-database',
-        'USER': 'aoxsscfffw',
-        'PASSWORD': '$K8wcvglcQ53RBTD',
-        'HOST': 'safe-server.postgres.database.azure.com',
-        'PORT': '5432',
+        'NAME': os.getenv('dbname'),
+        'USER': os.getenv('user'),
+        'PASSWORD': os.getenv('password'),
+        'HOST': os.getenv('host'),
+        'PORT': os.getenv('port'),
         'OPTIONS': {
-            'sslmode': 'require',
+            'sslmode': 'require',  # Required for Azure PostgreSQL
         },
     }
 }
