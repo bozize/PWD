@@ -24,30 +24,30 @@ from django.core.files.base import ContentFile
 
 
 
-
+# this view processes image detection for violations
 @api_view(['POST'])
 def process_violation(request):
     violation_id = request.data.get('violation_id')
     
-    # Get the violation instance or return 404 if not found
+    
     violation = get_object_or_404(TrafficViolation, id=violation_id)
     
-    # Call the process_image function directly if you want to process it again
+    
     process_result = process_image(violation)
 
     if isinstance(process_result, dict) and 'error' in process_result:
         return Response(process_result, status=status.HTTP_400_BAD_REQUEST)
 
-    # Return the updated violation data
+   
     return Response(TrafficViolationSerializer(violation).data, status=status.HTTP_200_OK)
     
-
+# this view verifies pwd existence
 @api_view(['GET'])
 def get_pwd_by_mac(request, mac_address):
-    # Check if a PWD with the provided mac_address exists
+    
     exists = PWD.objects.filter(mac_address=mac_address).exists()
 
-    # Return "yes" if exists, otherwise "no"
+    
     if exists:
         return Response({"message": "yes"}, status=status.HTTP_200_OK)
     else:
@@ -56,30 +56,6 @@ def get_pwd_by_mac(request, mac_address):
 
 
 
-@api_view(['POST'])
-def upload_violation(request):
-    # Check if chat_id and photo are provided in the request data
-    chat_id = request.data.get('chat_id')
-    photo = request.data.get('photo')
-
-    if not chat_id or not photo:
-        return Response({"error": "No chat_id or photo provided"}, status=status.HTTP_400_BAD_REQUEST)
-
-    # Construct the file URL
-    image_url = f"https://api.telegram.org/file/bot7995325127:AAE8iqnLoEFovSAMDa9EKEZXVgtAAIQ26fI/{photo}"  # Use your actual BOT token here
-    response = requests.get(image_url)
-
-    if response.status_code != 200:
-        return Response({"error": "Failed to retrieve image from Telegram"}, status=status.HTTP_400_BAD_REQUEST)
-
-    # Create a file-like object from the response content
-    image_file = ContentFile(response.content, name=photo)
-
-    # Save the image to your model
-    violation = TrafficViolation(car_image=image_file)  # Ensure your model has the field car_image
-    violation.save()
-
-    return Response({"status": "success"}, status=status.HTTP_201_CREATED)
 
 import logging
 

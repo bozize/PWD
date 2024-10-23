@@ -1,21 +1,20 @@
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Security settings
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')  # Use an environment variable
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Convert the string value to boolean
 
-# Allowed hosts for production
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key') 
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+
 ALLOWED_HOSTS = ['safestep-frfda9eqdkg2cnh7.centralindia-01.azurewebsites.net']
 
-# Azure Computer Vision settings
+
 AZURE_COMPUTER_VISION_ENDPOINT = os.environ.get('AZURE_COMPUTER_VISION_ENDPOINT', 'https://default-endpoint.com/')
 AZURE_COMPUTER_VISION_KEY = os.environ.get('AZURE_COMPUTER_VISION_KEY', 'default_key')
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,7 +51,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 WSGI_APPLICATION = 'PWD.wsgi.application'
 
-# Database settings
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -62,14 +61,14 @@ DATABASES = {
         'HOST': os.getenv('host'),
         'PORT': os.getenv('port'),
         'OPTIONS': {
-            'sslmode': 'require',  # Required for Azure PostgreSQL
+            'sslmode': 'require',
         },
     }
 }
 
 
 
-# Password validation
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
